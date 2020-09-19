@@ -5,7 +5,6 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 1f;
-    public float pixPerUnit = 16;
 
     // Start is called before the first frame update
     void Start()
