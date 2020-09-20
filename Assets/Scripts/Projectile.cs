@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    [SerializeField] float speed = 0f;
+    [SerializeField] Vector3 direction = new Vector3(0,0,0);
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +16,25 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(gameObject.activeInHierarchy && speed > 0){
+            transform.position += direction * speed * Time.deltaTime;
+        }
     }
+
+    public float GetSpeed(){
+        return speed;
+    }
+    
+    public void SetDirection(Vector3 direction){
+        this.direction = direction;
+    }
+
+    public void SetSpeed(float speed){
+        this.speed = speed;
+    }
+    
+    private void OnTriggerEnter2D(Collider2D other) {
+        gameObject.SetActive(false);
+    }
+
 }
