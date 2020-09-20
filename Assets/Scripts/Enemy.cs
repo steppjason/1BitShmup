@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] int health = 0;
     [SerializeField] Projectile projectile;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,10 +22,12 @@ public class Enemy : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        var test = ExplosionController.GetAvailble();
-        test.gameObject.SetActive(true);
-        test.gameObject.transform.position = transform.position;
-        StartCoroutine(ExplosionController.SetInactive(test));
-        gameObject.SetActive(false);
+        var explosion = ExplosionController.GetAvailble();
+        explosion.gameObject.SetActive(true);
+        explosion.gameObject.transform.position = transform.position;
+        transform.position = new Vector3(-100,0,0);
+        StartCoroutine(ExplosionController.SetInactive(explosion, gameObject));
+
+        
     }
 }

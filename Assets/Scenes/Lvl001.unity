@@ -461,7 +461,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 655214374}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.38, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -827,7 +827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54a1fd5ffbb29674b897e25b6c6815ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionCount: 10
+  explosionCount: 20
   explosion: {fileID: 6490186882180989291, guid: 07047f61d789c7c49b404dd473e79fea, type: 3}
   explosionParent: {fileID: 715743738}
 --- !u!1 &1217520175
@@ -1037,6 +1037,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   parentProjectile: {fileID: 840666130}
+  enemy: {fileID: 655214374}
   numberOfProjectiles: 50
   playerProjectile:
   - {fileID: 5987534767511046130, guid: 7f3980a53abf2c949b36d7462025fc01, type: 3}

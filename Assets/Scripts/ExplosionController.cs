@@ -11,7 +11,7 @@ public class ExplosionController : MonoBehaviour
 
     private static GameObject[] explosionPool;
     private static int seconds = 1;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,8 +33,9 @@ public class ExplosionController : MonoBehaviour
         return null;
     }
 
-    public static IEnumerator SetInactive(GameObject explosion){
+    public static IEnumerator SetInactive(GameObject explosion, GameObject source){
         yield return new WaitForSeconds(seconds);
         explosion.SetActive(false);
+        source.SetActive(false);
     }
 }

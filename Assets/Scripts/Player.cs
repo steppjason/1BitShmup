@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     
     [SerializeField] GameObject parentProjectile;
 
+    [SerializeField] GameObject enemy;
+
     [SerializeField] int numberOfProjectiles = 30;
     
     [SerializeField] Projectile[] playerProjectile;
@@ -52,23 +54,26 @@ public class Player : MonoBehaviour
         }
 
         if(Input.GetButtonDown("Fire2")){
-            var test = ExplosionController.GetAvailble();
-            test.gameObject.SetActive(true);
-            test.gameObject.transform.position = new Vector3(0,0,0);
-            StartCoroutine(ExplosionController.SetInactive(test));
+            enemy.SetActive(true);
+            enemy.transform.position = new Vector3(0,0,0);
         }
+        
 
     }
 
     void Fire(){
 
         switch(currentPowerLevel){
+            
+            //Single shot
             case 0:
             case 2:
                 SetNextBullet();
                 bulletList[currentPowerLevel, nextBullet].transform.position = transform.position;
                 bulletList[currentPowerLevel, nextBullet].gameObject.SetActive(true);
                 break;
+
+            //Spread shot
             case 1:
             case 3:
                 for(int i = -1; i < 2; i++){
@@ -78,7 +83,12 @@ public class Player : MonoBehaviour
                     bulletList[currentPowerLevel, nextBullet].gameObject.SetActive(true);
                 }
                 break;
+
+            //Default to single shot
             default:
+                SetNextBullet();
+                bulletList[currentPowerLevel, nextBullet].transform.position = transform.position;
+                bulletList[currentPowerLevel, nextBullet].gameObject.SetActive(true);
                 break;
         }
 
