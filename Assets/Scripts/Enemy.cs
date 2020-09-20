@@ -22,12 +22,14 @@ public class Enemy : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
+        Destroy();
+    }
+
+    private void Destroy(){
+        gameObject.SetActive(false);
+
         var explosion = ExplosionController.GetAvailble();
         explosion.gameObject.SetActive(true);
         explosion.gameObject.transform.position = transform.position;
-        transform.position = new Vector3(-100,0,0);
-        StartCoroutine(ExplosionController.SetInactive(explosion, gameObject));
-
-        
     }
 }

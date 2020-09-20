@@ -8,25 +8,29 @@ public class PowerupController: MonoBehaviour
     [SerializeField] Powerup powerup;
     [SerializeField] GameObject powerupParent;
 
+    private Vector3 defaultPos = new Vector3(-100,0,0);
     private static Powerup[] powerupPool;
 
     void Start()
     {
-        powerupPool = new Powerup[powerupCount];
-        for(int i = 0; i < powerupPool.Length; i++){
-            powerupPool[i] = Instantiate(powerup, new Vector3(-25,0,0), Quaternion.identity);
-            powerupPool[i].transform.parent = powerupParent.transform;
-            powerupPool[i].gameObject.SetActive(false);
-        }
+        CreatePool();
     }
 
     public static Powerup GetAvailble(){
-
         for(int i = 0; i < powerupPool.Length; i++){
             if(!powerupPool[i].gameObject.activeInHierarchy){
                 return powerupPool[i];
             }
         }
         return null;
+    }
+
+    private void CreatePool(){
+        powerupPool = new Powerup[powerupCount];
+        for(int i = 0; i < powerupPool.Length; i++){
+            powerupPool[i] = Instantiate(powerup, defaultPos, Quaternion.identity);
+            powerupPool[i].transform.parent = powerupParent.transform;
+            powerupPool[i].gameObject.SetActive(false);
+        }
     }
 }

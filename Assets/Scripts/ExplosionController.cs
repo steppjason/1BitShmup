@@ -33,9 +33,5 @@ public class ExplosionController : MonoBehaviour
         return null;
     }
 
-    public static IEnumerator SetInactive(GameObject explosion, GameObject source){
-        yield return new WaitForSeconds(seconds);
-        explosion.SetActive(false);
-        source.SetActive(false);
-    }
+    
 }
