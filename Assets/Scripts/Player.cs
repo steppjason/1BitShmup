@@ -51,6 +51,12 @@ public class Player : MonoBehaviour
             Fire();
         }
 
+        if(Input.GetButtonDown("Fire2")){
+            var test = PowerupController.GetAvailble();
+            test.gameObject.SetActive(true);
+            test.gameObject.transform.position = new Vector3(0,0,0);
+        }
+
     }
 
     void Fire(){
