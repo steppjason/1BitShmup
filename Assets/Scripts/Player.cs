@@ -52,9 +52,10 @@ public class Player : MonoBehaviour
         }
 
         if(Input.GetButtonDown("Fire2")){
-            var test = PowerupController.GetAvailble();
+            var test = ExplosionController.GetAvailble();
             test.gameObject.SetActive(true);
             test.gameObject.transform.position = new Vector3(0,0,0);
+            StartCoroutine(ExplosionController.SetInactive(test));
         }
 
     }
@@ -103,4 +104,5 @@ public class Player : MonoBehaviour
             currentPowerLevel = 3;
         }
     }
+
 }
