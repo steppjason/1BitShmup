@@ -7,8 +7,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] int health = 0;
     [SerializeField] Projectile projectile;
 
-    
-
     // Start is called before the first frame update
     void Start()
     {

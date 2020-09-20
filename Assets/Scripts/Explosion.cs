@@ -6,8 +6,7 @@ public class Explosion : MonoBehaviour
 {
     [SerializeField] int seconds = 1;
 
-    void Update()
-    {
+    void Update(){
         StartCoroutine(SetInactive());
     }
 

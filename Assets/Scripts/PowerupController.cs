@@ -16,15 +16,6 @@ public class PowerupController: MonoBehaviour
         CreatePool();
     }
 
-    public static Powerup GetAvailble(){
-        for(int i = 0; i < powerupPool.Length; i++){
-            if(!powerupPool[i].gameObject.activeInHierarchy){
-                return powerupPool[i];
-            }
-        }
-        return null;
-    }
-
     private void CreatePool(){
         powerupPool = new Powerup[powerupCount];
         for(int i = 0; i < powerupPool.Length; i++){
@@ -32,5 +23,14 @@ public class PowerupController: MonoBehaviour
             powerupPool[i].transform.parent = powerupParent.transform;
             powerupPool[i].gameObject.SetActive(false);
         }
+    }
+
+    public static Powerup GetAvailble(){
+        for(int i = 0; i < powerupPool.Length; i++){
+            if(!powerupPool[i].gameObject.activeInHierarchy){
+                return powerupPool[i];
+            }
+        }
+        return null;
     }
 }
