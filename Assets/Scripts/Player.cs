@@ -55,7 +55,13 @@ public class Player : MonoBehaviour
 
         if(Input.GetButtonDown("Fire2")){
             enemy.SetActive(true);
-            enemy.transform.position = new Vector3(0,0,0);
+            enemy.transform.position = new Vector3(0,5,0);
+        }
+
+        if(Input.GetButtonDown("Jump")){
+            var powerup = PowerupController.GetAvailble();
+            powerup.gameObject.SetActive(true);
+            powerup.transform.position = new Vector3(Random.Range(-10,10),10,0);
         }
         
 

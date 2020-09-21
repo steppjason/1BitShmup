@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5225051942926582789}
   - component: {fileID: 5225051942926582842}
   m_Layer: 11
-  m_Name: EnemyBullet
+  m_Name: Enemy_Projectile_Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -144,3 +144,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3149773b22ab8e2499ed0013ff4dcdf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 5
+  direction: {x: 0, y: -1, z: 0}
