@@ -4,38 +4,24 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] int health = 1;
     [SerializeField] float moveSpeed = 1f;
-    
-    [SerializeField] GameObject parentProjectile;
+
 
     [SerializeField] GameObject enemy;
 
-    [SerializeField] int numberOfProjectiles = 30;
-    
-    [SerializeField] Projectile[] playerProjectile;
-    [SerializeField] float projectileSpeed = 1f;
-    [SerializeField] Vector3 projectileDirection = new Vector3(0,1,0);
-
-    //[SerializeField] Projectile[] bulletList;
+    [SerializeField] Projectile[] playerProjectiles;
+    [SerializeField] int numberOfProjectiles = 20;
+    [SerializeField] GameObject parentProjectile;
+    [SerializeField] int currentPowerLevel = 0;
 
     private Projectile[,] bulletList;
     private int nextBullet = 0;
 
-    [SerializeField] int numberOfPowerLevels = 1;
-
-    [SerializeField] int currentPowerLevel = 0;
-
     // Start is called before the first frame update
     void Start()
     {
-        bulletList = new Projectile[playerProjectile.Length, numberOfProjectiles];
-        for(int i = 0; i < numberOfProjectiles; i++){
-            for(int j = 0; j < playerProjectile.Length; j++){
-                bulletList[j,i] = Instantiate(playerProjectile[j], new Vector3(-25,0,0), Quaternion.identity);
-                bulletList[j,i].transform.parent = parentProjectile.transform;
-                bulletList[j,i].gameObject.SetActive(false);
-            }
-        }
+        InstantiateBullets();
     }
 
     // Update is called once per frame
@@ -98,7 +84,29 @@ public class Player : MonoBehaviour
                 break;
         }
 
-        
+    }
+
+
+    public int GetPowerLevel(){
+        return currentPowerLevel;
+    }
+
+    public void SetPowerLevel(int powerLevel){
+        currentPowerLevel = powerLevel;
+        if(currentPowerLevel > playerProjectiles.Length - 1){
+            currentPowerLevel = playerProjectiles.Length - 1;
+        }
+    }
+
+    private void InstantiateBullets(){
+        bulletList = new Projectile[playerProjectiles.Length, numberOfProjectiles];
+        for(int i = 0; i < numberOfProjectiles; i++){
+            for(int j = 0; j < playerProjectiles.Length; j++){
+                bulletList[j,i] = Instantiate(playerProjectiles[j], new Vector3(-25,0,0), Quaternion.identity);
+                bulletList[j,i].transform.parent = parentProjectile.transform;
+                bulletList[j,i].gameObject.SetActive(false);
+            }
+        }
     }
 
     void SetNextBullet(){
@@ -107,17 +115,6 @@ public class Player : MonoBehaviour
                 nextBullet = i;
                 return;
             }
-        }
-    }
-
-    public int GetPowerLevel(){
-        return currentPowerLevel;
-    }
-
-    public void SetPowerLevel(int powerLevel){
-        currentPowerLevel = powerLevel;
-        if(currentPowerLevel > 3){
-            currentPowerLevel = 3;
         }
     }
 

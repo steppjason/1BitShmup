@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] float speed = 0f;
     [SerializeField] Vector3 direction = new Vector3(0,0,0);
+    [SerializeField] int damage = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +36,10 @@ public class Projectile : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other) {
         gameObject.SetActive(false);
+
+        if(other.gameObject.GetComponent<DestructibleObject>()){
+            other.gameObject.GetComponent<DestructibleObject>().Damage(damage);
+        }
     }
 
 }

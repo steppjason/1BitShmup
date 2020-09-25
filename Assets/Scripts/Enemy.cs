@@ -47,25 +47,17 @@ public class Enemy : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        Destroy();
-    }
-
-    private void Destroy(){
-        gameObject.SetActive(false);
-
-        var explosion = ExplosionController.GetAvailble();
-        explosion.gameObject.SetActive(true);
-        explosion.gameObject.transform.position = transform.position;
-    }
+    
 
     private void Fire(){
-
-        SetNextBullet();
-        bulletList[nextBullet].transform.position = transform.position;
-        bulletList[nextBullet].SetDirection((GameObject.Find("Player").transform.position - transform.position).normalized);
-        bulletList[nextBullet].gameObject.SetActive(true);
  
+        if(player.activeInHierarchy && gameObject.activeInHierarchy){
+            SetNextBullet();
+            bulletList[nextBullet].transform.position = transform.position;
+            bulletList[nextBullet].SetDirection((player.transform.position - transform.position).normalized);
+            bulletList[nextBullet].gameObject.SetActive(true);
+        }
+
     }
 
 

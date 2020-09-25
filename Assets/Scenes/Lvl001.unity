@@ -1041,17 +1041,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  parentProjectile: {fileID: 840666130}
   enemy: {fileID: 655214374}
-  numberOfProjectiles: 50
-  playerProjectile:
+  playerProjectiles:
   - {fileID: 5987534767511046130, guid: 7f3980a53abf2c949b36d7462025fc01, type: 3}
   - {fileID: 5987534767511046130, guid: 7f3980a53abf2c949b36d7462025fc01, type: 3}
   - {fileID: 5987534767511046130, guid: 17782b5e022ad8940aa2402bcf146dda, type: 3}
   - {fileID: 5987534767511046130, guid: 17782b5e022ad8940aa2402bcf146dda, type: 3}
-  projectileSpeed: 15
-  projectileDirection: {x: 0, y: 1, z: 0}
-  numberOfPowerLevels: 1
+  numberOfProjectiles: 40
+  parentProjectile: {fileID: 840666130}
   currentPowerLevel: 0
 --- !u!1 &1489600989
 GameObject:
