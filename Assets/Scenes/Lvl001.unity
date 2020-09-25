@@ -395,6 +395,8 @@ GameObject:
   - component: {fileID: 655214379}
   - component: {fileID: 655214378}
   - component: {fileID: 655214377}
+  - component: {fileID: 655214380}
+  - component: {fileID: 655214381}
   m_Layer: 9
   m_Name: Enemy_Drone
   m_TagString: Untagged
@@ -526,12 +528,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f47f1f417c660e44b12aaac071f9cf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  enemyProjectile: {fileID: 5225051942926582842, guid: 5c9d63482a4100745a9609eb4c4f290f, type: 3}
-  parentProjectile: {fileID: 1489600989}
+--- !u!114 &655214380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655214374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8989a8e1b1740264a9f438180cc0b9a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+--- !u!114 &655214381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655214374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d20898e8a8e1034fa6f8777cb4c0611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectiles:
+  - {fileID: 5225051942926582842, guid: 5c9d63482a4100745a9609eb4c4f290f, type: 3}
   numberOfProjectiles: 20
-  projectileSpeed: 2
-  projectileDirection: {x: 0, y: 1, z: 0}
+  parentProjectile: {fileID: 1489600989}
+  currentPowerLevel: 0
 --- !u!1 &715743738
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,6 +937,8 @@ GameObject:
   - component: {fileID: 1483212868}
   - component: {fileID: 1483212869}
   - component: {fileID: 1483212870}
+  - component: {fileID: 1483212872}
+  - component: {fileID: 1483212871}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -1040,9 +1068,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae752a15c49a456469045352dea28de4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 1
   moveSpeed: 5
   enemy: {fileID: 655214374}
-  playerProjectiles:
+--- !u!114 &1483212871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483212865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8989a8e1b1740264a9f438180cc0b9a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+--- !u!114 &1483212872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483212865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d20898e8a8e1034fa6f8777cb4c0611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectiles:
   - {fileID: 5987534767511046130, guid: 7f3980a53abf2c949b36d7462025fc01, type: 3}
   - {fileID: 5987534767511046130, guid: 7f3980a53abf2c949b36d7462025fc01, type: 3}
   - {fileID: 5987534767511046130, guid: 17782b5e022ad8940aa2402bcf146dda, type: 3}

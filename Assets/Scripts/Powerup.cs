@@ -14,7 +14,7 @@ public class Powerup : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.gameObject.name == "Player"){
             this.gameObject.SetActive(false);
-            collision.gameObject.GetComponent<Player>().SetPowerLevel(collision.gameObject.GetComponent<Player>().GetPowerLevel() + 1);
+            collision.gameObject.GetComponent<Weapon>().SetPowerLevel(collision.gameObject.GetComponent<Weapon>().GetPowerLevel() + 1);
         }
 
         if(collision.gameObject.tag == "Bounds"){

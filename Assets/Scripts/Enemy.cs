@@ -4,22 +4,6 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] int health = 0;
-
-
-
-    [SerializeField] Projectile enemyProjectile;
-
-    [SerializeField] GameObject parentProjectile;
-
-    [SerializeField] int numberOfProjectiles = 20;
-    [SerializeField] float projectileSpeed = 1f;
-    [SerializeField] Vector3 projectileDirection = new Vector3(0,-1,0);
-
-
-    private Projectile[] bulletList;
-    private int nextBullet = 0;
-
     private int fireCount = 0;
 
     private GameObject player;
@@ -27,17 +11,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bulletList = new Projectile[numberOfProjectiles];
-        for(int i = 0; i < numberOfProjectiles; i++){
-
-                bulletList[i] = Instantiate(enemyProjectile, new Vector3(-25,0,0), Quaternion.identity);
-                bulletList[i].transform.parent = parentProjectile.transform;
-                bulletList[i].gameObject.SetActive(false);
-            
-        }
-        
         player = GameObject.Find("Player");
-
         InvokeRepeating("Fire", 3f, 0.7f);
     }
 
@@ -47,28 +21,9 @@ public class Enemy : MonoBehaviour
         
     }
 
-    
-
-    private void Fire(){
- 
+    void Fire(){
         if(player.activeInHierarchy && gameObject.activeInHierarchy){
-            SetNextBullet();
-            bulletList[nextBullet].transform.position = transform.position;
-            bulletList[nextBullet].SetDirection((player.transform.position - transform.position).normalized);
-            bulletList[nextBullet].gameObject.SetActive(true);
-        }
-
-    }
-
-
-    void SetNextBullet(){
-        for(int i = 0; i < bulletList.Length; i++){
-            if(!bulletList[i].gameObject.activeInHierarchy){
-                nextBullet = i;
-                return;
-            }
+            gameObject.GetComponent<Weapon>().Fire(player);
         }
     }
-
-    
 }
