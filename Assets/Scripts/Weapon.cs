@@ -17,26 +17,6 @@ public class Weapon : MonoBehaviour
         InstantiateBullets();
     }
 
-    private void InstantiateBullets(){
-        bulletList = new Projectile[projectiles.Length, numberOfProjectiles];
-        for(int i = 0; i < numberOfProjectiles; i++){
-            for(int j = 0; j < projectiles.Length; j++){
-                bulletList[j,i] = Instantiate(projectiles[j], new Vector3(-25,0,0), Quaternion.identity);
-                bulletList[j,i].transform.parent = parentProjectile.transform;
-                bulletList[j,i].gameObject.SetActive(false);
-            }
-        }
-    }
-
-    void SetNextBullet(){
-        for(int i = 0; i < bulletList.Length; i++){
-            if(!bulletList[currentPowerLevel, i].gameObject.activeInHierarchy){
-                nextBullet = i;
-                return;
-            }
-        }
-    }
-
     public void Fire(){
 
         switch(currentPowerLevel){
@@ -44,7 +24,7 @@ public class Weapon : MonoBehaviour
             //Single shot
             case 0:
             case 2:
-                SetNextBullet();
+                GetAvailable();
                 bulletList[currentPowerLevel, nextBullet].transform.position = transform.position;
                 bulletList[currentPowerLevel, nextBullet].gameObject.SetActive(true);
                 break;
@@ -53,7 +33,7 @@ public class Weapon : MonoBehaviour
             case 1:
             case 3:
                 for(int i = -1; i < 2; i++){
-                    SetNextBullet();
+                    GetAvailable();
                     bulletList[currentPowerLevel, nextBullet].transform.position = transform.position;
                     bulletList[currentPowerLevel, nextBullet].SetDirection(new Vector3(-0.25f * i,1,0));
                     bulletList[currentPowerLevel, nextBullet].gameObject.SetActive(true);
@@ -62,7 +42,7 @@ public class Weapon : MonoBehaviour
 
             //Default to single shot
             default:
-                SetNextBullet();
+                GetAvailable();
                 bulletList[currentPowerLevel, nextBullet].transform.position = transform.position;
                 bulletList[currentPowerLevel, nextBullet].gameObject.SetActive(true);
                 break;
@@ -77,7 +57,7 @@ public class Weapon : MonoBehaviour
             //Single shot
             case 0:
             case 2:
-                SetNextBullet();
+                GetAvailable();
                 bulletList[currentPowerLevel, nextBullet].transform.position = transform.position;
                 bulletList[currentPowerLevel, nextBullet].SetDirection((target.transform.position - transform.position).normalized);
                 bulletList[currentPowerLevel, nextBullet].gameObject.SetActive(true);
@@ -87,7 +67,7 @@ public class Weapon : MonoBehaviour
             case 1:
             case 3:
                 for(int i = -1; i < 2; i++){
-                    SetNextBullet();
+                    GetAvailable();
                     bulletList[currentPowerLevel, nextBullet].transform.position = transform.position;
                     bulletList[currentPowerLevel, nextBullet].SetDirection(new Vector3(-0.25f * i,1,0));
                     bulletList[currentPowerLevel, nextBullet].gameObject.SetActive(true);
@@ -96,7 +76,7 @@ public class Weapon : MonoBehaviour
 
             //Default to single shot
             default:
-                SetNextBullet();
+                GetAvailable();
                 bulletList[currentPowerLevel, nextBullet].transform.position = transform.position;
                 bulletList[currentPowerLevel, nextBullet].SetDirection((target.transform.position - transform.position).normalized);
                 bulletList[currentPowerLevel, nextBullet].gameObject.SetActive(true);
@@ -113,6 +93,26 @@ public class Weapon : MonoBehaviour
         currentPowerLevel = powerLevel;
         if(currentPowerLevel > projectiles.Length - 1){
             currentPowerLevel = projectiles.Length - 1;
+        }
+    }
+
+    private void InstantiateBullets(){
+        bulletList = new Projectile[projectiles.Length, numberOfProjectiles];
+        for(int i = 0; i < numberOfProjectiles; i++){
+            for(int j = 0; j < projectiles.Length; j++){
+                bulletList[j,i] = Instantiate(projectiles[j], new Vector3(-25,0,0), Quaternion.identity);
+                bulletList[j,i].transform.parent = parentProjectile.transform;
+                bulletList[j,i].gameObject.SetActive(false);
+            }
+        }
+    }
+
+    private void GetAvailable(){
+        for(int i = 0; i < bulletList.Length; i++){
+            if(!bulletList[currentPowerLevel, i].gameObject.activeInHierarchy){
+                nextBullet = i;
+                return;
+            }
         }
     }
 }

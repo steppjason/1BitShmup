@@ -15,10 +15,10 @@ public class ExplosionController : MonoBehaviour
 
     // Start is called before the first frame update
     void Start(){
-        CreatePool();
+        InstantiateExplosions();
     }
 
-    private void CreatePool(){
+    private void InstantiateExplosions(){
         explosionPool = new GameObject[explosionCount];
         for(int i = 0; i < explosionPool.Length; i++){
             explosionPool[i] = Instantiate(explosion, defaultPos, Quaternion.identity);
