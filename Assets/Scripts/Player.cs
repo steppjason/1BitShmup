@@ -19,11 +19,11 @@ public class Player : MonoBehaviour
     void Update()
     {
         if(Input.GetAxisRaw("Horizontal") != 0){
-            transform.position = new Vector2(transform.position.x + Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime, transform.position.y);
+            transform.position = new Vector3(transform.position.x + Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime, transform.position.y, transform.position.z);
         }
 
         if(Input.GetAxisRaw("Vertical") != 0){
-            transform.position = new Vector2(transform.position.x, transform.position.y + Input.GetAxisRaw("Vertical") * moveSpeed * Time.deltaTime);
+            transform.position = new Vector3(transform.position.x, transform.position.y + Input.GetAxisRaw("Vertical") * moveSpeed * Time.deltaTime, transform.position.z);
         }
 
         if(Input.GetButtonDown("Fire1")){
