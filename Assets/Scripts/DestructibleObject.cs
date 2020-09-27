@@ -6,9 +6,10 @@ public class DestructibleObject : MonoBehaviour
 {
     [SerializeField] int health = 1;
 
+    
+
     // Start is called before the first frame update
-    void Start()
-    {
+    private void Start() {
         
     }
 
@@ -28,8 +29,14 @@ public class DestructibleObject : MonoBehaviour
     public void Kill(){
         gameObject.SetActive(false);
 
+        if(gameObject.name == "Player"){
+            gameObject.GetComponent<Player>().OnDeath();
+        }
+
         var explosion = ExplosionController.GetAvailble();
         explosion.gameObject.SetActive(true);
         explosion.gameObject.transform.position = transform.position;
     }
+
+    
 }

@@ -8,11 +8,13 @@ public class Player : MonoBehaviour
     [SerializeField] float moveSpeed = 1f;
     [SerializeField] GameObject enemy;
 
+    private GameObject powerBar;
+
 
     // Start is called before the first frame update
     void Start()
     {
-
+        powerBar = GameObject.Find("PowerBar");
     }
 
     // Update is called once per frame
@@ -40,8 +42,12 @@ public class Player : MonoBehaviour
             powerup.gameObject.SetActive(true);
             powerup.transform.position = new Vector3(Random.Range(-10,10),10,0);
         }
-        
 
+    }
+
+    public void OnDeath(){
+        powerBar.GetComponent<PowerBar>().UpdateDisplay(0);
+        gameObject.GetComponent<Weapon>().SetPowerLevel(0);
     }
 
 }
