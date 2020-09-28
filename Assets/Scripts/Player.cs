@@ -9,24 +9,27 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject enemy;
 
     private GameObject powerBar;
+    private Vector3 direction;
+
+    private DestructibleObject destructible;
 
 
     // Start is called before the first frame update
     void Start()
     {
         powerBar = GameObject.Find("PowerBar");
+        destructible = gameObject.GetComponent<DestructibleObject>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetAxisRaw("Horizontal") != 0){
-            transform.position = new Vector3(transform.position.x + Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime, transform.position.y, transform.position.z);
-        }
 
-        if(Input.GetAxisRaw("Vertical") != 0){
-            transform.position = new Vector3(transform.position.x, transform.position.y + Input.GetAxisRaw("Vertical") * moveSpeed * Time.deltaTime, transform.position.z);
-        }
+        //Get normalized direction vector and move the player
+        direction = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0f);        
+        direction.Normalize();
+        transform.position += direction * moveSpeed * Time.deltaTime;
+  
 
         if(Input.GetButtonDown("Fire1")){
             gameObject.GetComponent<Weapon>().Fire();
@@ -48,6 +51,12 @@ public class Player : MonoBehaviour
     public void OnDeath(){
         powerBar.GetComponent<PowerBar>().UpdateDisplay(0);
         gameObject.GetComponent<Weapon>().SetPowerLevel(0);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if(other.gameObject.GetComponent<Enemy>()){
+            destructible.Kill();
+        }
     }
 
 }
