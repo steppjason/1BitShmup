@@ -470,11 +470,11 @@ MonoBehaviour:
   m_AssetsPPU: 16
   m_RefResolutionX: 300
   m_RefResolutionY: 432
-  m_UpscaleRT: 1
+  m_UpscaleRT: 0
   m_PixelSnapping: 1
   m_CropFrameX: 0
   m_CropFrameY: 1
-  m_StretchFill: 1
+  m_StretchFill: 0
   m_Filtering: 0
 --- !u!20 &519420031
 Camera:
@@ -496,9 +496,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
+    y: 0.16434109
     width: 1
-    height: 1
+    height: 0.66976744
   near clip plane: 0
   far clip plane: 1000
   field of view: 60
@@ -6460,7 +6460,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1610144363
 RectTransform:
   m_ObjectHideFlags: 0
