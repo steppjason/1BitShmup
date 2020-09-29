@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyDrone : MonoBehaviour
 {
     [SerializeField] float speed = 5f;
-    [SerializeField] float rotSpeed = 2f;
+    [SerializeField] float rotSpeed = 3f;
 
     private const float DRONE_ROTATION = 90f;
 
