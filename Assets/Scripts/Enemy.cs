@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private int fireCount = 0;
-
+    private Vector2 origin;
     
 
 
@@ -16,11 +16,17 @@ public class Enemy : MonoBehaviour
     {
         player = GameObject.Find("Player");
         //InvokeRepeating("Fire", 3f, 0.7f);
+        //origin = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+    
+    }
+
+    private void OnEnable() {
+        transform.position = new Vector2(2,15);
     }
 
     void Fire(){
