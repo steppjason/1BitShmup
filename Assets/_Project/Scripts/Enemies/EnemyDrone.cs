@@ -2,45 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyDrone : MonoBehaviour
-{
-    [SerializeField] float speed = 5f;
-    [SerializeField] float rotSpeed = 3f;
+public class EnemyDrone : Enemy
+{    
+    private Vector3 _target;
 
-    private const float DRONE_ROTATION = 90f;
-
-    private GameObject player;
-    private Vector3 target;
-
-    // Start is called before the first frame update
-    void Start()
+    public override void Logic()
     {
-        player = GameObject.Find("Player");
-        target = player.transform.position;
+        //Move();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Move()
     {
-        Move();
-    }
-
-    public void Move(){
-
-        if(player.activeInHierarchy){
-
+        if (player.activeInHierarchy)
+        {
             //Get the player's current position
-            target = player.transform.position;
+            _target = player.transform.position;
 
             //Use Slerp to rotate towards the player's position
             transform.rotation = Quaternion.Slerp(
-                    transform.rotation, 
-                    Quaternion.Euler(new Vector3(0, 0, 
-                        Mathf.Atan2(target.y - transform.position.y, target.x - transform.position.x) * Mathf.Rad2Deg + DRONE_ROTATION)), 
-                    rotSpeed * Time.deltaTime);
+                    transform.rotation,
+                    Quaternion.Euler(new Vector3(0, 0,
+                        Mathf.Atan2(_target.y - transform.position.y, _target.x - transform.position.x) * Mathf.Rad2Deg + enemy.OrientationRotation)),
+                    enemy.RotationSpeed * Time.deltaTime);
         }
 
-        transform.position += transform.rotation * Vector3.down * speed * Time.deltaTime;
+        transform.position += transform.rotation * Vector3.down * enemy.Speed * Time.deltaTime;
+    }
+
+    private void Fire()
+    {
+        if (player.activeInHierarchy && gameObject.activeInHierarchy)
+        {
+            gameObject.GetComponent<Weapon>().Fire(player);
+        }
     }
 
 

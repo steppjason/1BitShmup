@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class DestructibleObject : MonoBehaviour
 {
+    [SerializeField] EnemyObject enemy;
     [SerializeField] int health = 1;
-
-    
 
     // Start is called before the first frame update
     private void Start() {
@@ -24,6 +23,7 @@ public class DestructibleObject : MonoBehaviour
         if(health <= 0){
             Kill();
         }
+        
     }
 
     public void Kill(){
